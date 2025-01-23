@@ -1,0 +1,27 @@
+{
+  "name": "my-map-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@google-cloud/speech": "^6.6.0",
+    "@leafygreen-ui/button": "^21.2.1",
+    "@leafygreen-ui/code": "^14.3.3",
+    "@leafygreen-ui/icon-button": "^15.0.21",
+    "@leafygreen-ui/logo": "^9.1.1",
+    "@leafygreen-ui/search-input": "^3.0.1",
+    "@leafygreen-ui/skeleton-loader": "^1.2.0",
+    "@leafygreen-ui/text-area": "^9.1.0",
+    "@leafygreen-ui/typography": "^19.1.1",
+    "leaflet": "^1.9.4",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-leaflet": "^4.2.1"
+  }
+}

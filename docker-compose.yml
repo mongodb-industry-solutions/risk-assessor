@@ -1,0 +1,22 @@
+services:
+  loan-risk-assessor-front:
+    build:
+      context: .
+      no_cache: true
+      dockerfile: Dockerfile.frontend
+    image: loan-risk-assessor-front:latest
+    ports:
+      - "3000:3000"
+    restart: always
+    container_name: loan-risk-assessor-front
+
+  loan-risk-assessor-back:
+    build:
+      context: .
+      no_cache: true
+      dockerfile: Dockerfile.backend
+    image: loan-risk-assessor-back:latest
+    ports:
+      - "8000:8000"
+    restart: always
+    container_name: loan-risk-assessor-back
