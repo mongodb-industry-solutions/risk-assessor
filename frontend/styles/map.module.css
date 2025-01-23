@@ -1,0 +1,32 @@
+/* map.module.css */
+.mapContainer {
+  min-width: 650px;
+  flex: 1;
+}
+
+.mapBox {
+  position: relative; 
+  height: 80%; 
+  z-index: 0;
+}
+
+.solution {
+  position: relative;  
+  bottom: 0; 
+  width: 100%; 
+}
+
+.searchBar {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  margin-bottom: 3px;
+}
+
+.searchInput {
+  flex: 95;
+}
+
+.iconButton {
+  flex: 1.5; 
+}

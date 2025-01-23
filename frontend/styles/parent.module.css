@@ -1,0 +1,22 @@
+.mapContainer {
+    border-radius: 20px;
+    width: Auto;
+    min-width: 20%;
+    height: Auto;
+    background-color: #E3FCF7; 
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 30px; 
+    margin: 10px;
+    flex-shrink: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+  }
