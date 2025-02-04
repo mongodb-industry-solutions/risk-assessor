@@ -6,7 +6,7 @@ import Avatar from "../components/Avatar";
 import React, { useEffect } from 'react';
 import BusinessPlan from "../components/businessPlan";
 import { MarkersProvider, useMarkers } from "../context/Markers";
-import { H2, Body } from "@leafygreen-ui/typography";
+import { H2, Subtitle, Body } from "@leafygreen-ui/typography";
 import { ParagraphSkeleton } from "@leafygreen-ui/skeleton-loader";
 
 const Map = dynamic(() => import("../components/Map"), { ssr: false });
@@ -67,18 +67,12 @@ function LoadingContainer() {
           }}
         >
           <div style={{ margin: "10px 0px 0px 00px" }}>
-            <H2>Instructions</H2>
 
-            <Body style={{ fontSize: "16px", marginTop: "20px", marginBottom: "20px" }}>Welcome to the Leafy Business Loan Risk assessor, it assumes the scenario of an application for a business loan to start/expand a business that requires a physical real estate (eg. a bakery shop, restaurant, etc).</Body>
-
-            <Body style={{ fontSize: "16px", marginBottom: "10px" }}>1. Please indicate the business location of your real estate. </Body>
-            <Body style={{ fontSize: "16px", marginBottom: "10px" }}>2.  Please provide a brief description of your loan purpose and business plan. </Body>
-            <Body style={{ fontSize: "16px", marginBottom: "10px" }}>3.   Please scroll down to see the response after submission. </Body>
-
-
+            <Subtitle>Welcome to the Leafy Business Loan Risk assessor!</Subtitle>
+            <Body style={{ fontSize: "12pt", marginTop:"20px"}} >The risk assesor assumes the scenario of an application for a business loan to start/expand a business that requires a physical real estate (eg. a bakery shop, restaurant, etc).</Body>
 
           </div>
-          <Avatar src="/userAvatar.png" />
+          <Avatar src="/Person.png" />
         </div>
         <div
           style={{
