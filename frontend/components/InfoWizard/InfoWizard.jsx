@@ -72,11 +72,14 @@ InfoWizard.propTypes = {
   iconGlyph: PropTypes.string,
   sections: PropTypes.arrayOf(
     PropTypes.shape({
-      heading: PropTypes.string.isRequired, // Tab title
+      heading: PropTypes.string.isRequired, // Tab title  
       content: PropTypes.arrayOf(
         PropTypes.shape({
           heading: PropTypes.string,
-          body: PropTypes.string,
+          body: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.arrayOf(PropTypes.string), // Allows array of strings
+          ]),
           image: PropTypes.shape({
             src: PropTypes.string.isRequired,
             alt: PropTypes.string.isRequired,
