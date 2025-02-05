@@ -181,6 +181,7 @@ John’s Bakery is currently seeking $370,000 to launch. Specifically, these fun
   return (
     <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
       <TextArea
+        aria-labelledby="contained-textarea"
         style={{ minWidth: '600px', minHeight: '190px', fontSize : "16px" }}
         onChange={event => {
           setValue(event.target.value);

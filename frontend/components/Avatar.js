@@ -8,7 +8,7 @@ const Avatar = ({ src }) => {
       justifyContent: 'center', 
       alignItems: 'center', 
     }}>
-      <img src={src} alt="User Avatar" style={{ width: 'auto', height: 'auto' }} />
+      <img src={src} alt="User Avatar" style={{ width: '400px', height: 'auto' }} />
     </div>
   );
 };
