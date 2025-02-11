@@ -33,7 +33,7 @@ function Header() {
                   body: "This demo is to illustrate how GenAI can potentially help a borrower or a loan officer to assess the risk of a business loan for starting a business at a physical location. As part of such business loan assessment, it is a common practice for lenders to also assess the physical climate risks (such as flood risks) that can impact the borrower income and repayability. In our solution library, we have explained that without the use of RAG, LLMs show hallucination when trying to perform ood risk assessments.",
                 },
                 {
-                  heading: "How to Demo",
+                  heading: "How to Use the Demo",
                   body: [
                     "Type in a location at the location search bar or simply select on the example locations provided in the drop down list",
                     "Type in a business plan or ask the system to general the business plan by clicking on the “Example” button on lower right of the text entry box",
@@ -64,8 +64,8 @@ function Header() {
               heading: "Why MongoDB?",
               content: [
                 {
-                  heading: "Flexible Data Model",
-                  body: "MongoDB's document-based data model offers great flexibility for handling diverse and dynamic datasets, which are common in AI and machine learning applications. This enables you to store complex, varied data crucial for assessing loan risks, such as financial records, market data, and customer profiles, without the need for a predefined schema.",
+                  heading: "Flexible Multi-Modal Data Platform",
+                  body: "MongoDB’s document-based data model supports multiple data types—including key-value, graph, time series, and geospatial—enabling seamless integration of diverse datasets crucial for lending and financial services. This flexibility allows financial institutions to store and analyze complex data such as financial records, customer profiles, market trends, and location-based information without a predefined schema. Geospatial indexing and queries for example, empower lenders to assess regional risks (e.g., properties in flood-prone areas), optimize branch locations, enhance fraud detection through location-aware analytics and mitigate hallucinations using RAG with GenAI models —all within a unified, scalable database.",
                 },
                 {
                   heading: "Efficient Querying",
