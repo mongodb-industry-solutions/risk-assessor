@@ -67,7 +67,7 @@ const Map = ({ coordinates }) => {
     setSelectedCoords(coords);
     setShowMarkers(false);
     const newMarkers = await fetch(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/coordinates?latitude=${coords.lat}&longitude=${coords.lng}`
+      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/coordinates/?latitude=${coords.lat}&longitude=${coords.lng}`
     );
     const data = await newMarkers.json();
     setMarkers(data);
@@ -145,10 +145,8 @@ const Map = ({ coordinates }) => {
 
   const Headquarters =
     "1634 Broadway 1st floor, New York, NY 10019, United States";
-  const Cali =
-    "88 Kearny St Suite 500, San Francisco, CA 94108, United States";
-  const Texas = 
-    "201 Lily Trail, Red Oak, TX 75154, USA";
+  const Cali = "88 Kearny St Suite 500, San Francisco, CA 94108, United States";
+  const Texas = "201 Lily Trail, Red Oak, TX 75154, USA";
 
   return (
     <div className={styles.mapContainer}>

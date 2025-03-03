@@ -1,15 +1,17 @@
+"use client";
 // pages/index.js
 import dynamic from "next/dynamic";
-import styles from "../styles/Home.module.css";
-import Header from "../components/Header";
-import Avatar from "../components/Avatar";
-import React, { useEffect } from 'react';
-import BusinessPlan from "../components/businessPlan";
-import { MarkersProvider, useMarkers } from "../context/Markers";
+import styles from "./styles/Home.module.css";
+import Header from "./components/Header";
+import Avatar from "./components/Avatar";
+import React, { useEffect } from "react";
+import BusinessPlan from "./components/businessPlan";
+import { MarkersProvider, useMarkers } from "./context/Markers";
 import { H2, Subtitle, Body } from "@leafygreen-ui/typography";
 import { ParagraphSkeleton } from "@leafygreen-ui/skeleton-loader";
+import LeafyGreenProvider from "@leafygreen-ui/leafygreen-provider";
 
-const Map = dynamic(() => import("../components/Map"), { ssr: false });
+const Map = dynamic(() => import("./components/Map"), { ssr: false });
 
 function LoadingContainer() {
   const { loading, llmResponse, markers } = useMarkers();
@@ -45,7 +47,7 @@ function LoadingContainer() {
 
   useEffect(() => {
     if (loading) {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }
   }, [loading]);
 
@@ -67,10 +69,14 @@ function LoadingContainer() {
           }}
         >
           <div style={{ margin: "10px 0px 0px 00px" }}>
-
-            <Subtitle>Welcome to the Leafy Business Loan Risk assessor!</Subtitle>
-            <Body style={{ fontSize: "12pt", marginTop:"20px"}} >The risk assesor assumes the scenario of an application for a business loan to start/expand a business that requires a physical real estate (eg. a bakery shop, restaurant, etc).</Body>
-
+            <Subtitle>
+              Welcome to the Leafy Business Loan Risk assessor!
+            </Subtitle>
+            <Body style={{ fontSize: "12pt", marginTop: "20px" }}>
+              The risk assesor assumes the scenario of an application for a
+              business loan to start/expand a business that requires a physical
+              real estate (eg. a bakery shop, restaurant, etc).
+            </Body>
           </div>
           <Avatar src="/Person.png" />
         </div>
@@ -105,7 +111,8 @@ function LoadingContainer() {
               weight={"medium"}
               style={{ marginBottom: "15px", fontSize: "16px" }}
             >
-              Please provide a brief description of your loan purpose and business plan.
+              Please provide a brief description of your loan purpose and
+              business plan.
             </Body>
             <BusinessPlan />
           </div>
@@ -129,12 +136,7 @@ function LoadingContainer() {
         <div className={styles.loadingMain}>
           <div className={styles.loadingContainer} style={{ height: "100%" }}>
             <H2>Assessor's response</H2>
-            <Body
-              weight={"normal"}
-              style={{ marginTop: "5px", fontSize: "16px" }}
-            >
-              {paragraphs}
-            </Body>
+            {paragraphs}
           </div>
         </div>
       )}
@@ -145,7 +147,9 @@ function LoadingContainer() {
 export default function Home() {
   return (
     <MarkersProvider>
-      <LoadingContainer />
+      <LeafyGreenProvider>
+        <LoadingContainer />
+      </LeafyGreenProvider>
     </MarkersProvider>
   );
 }
