@@ -1,9 +1,9 @@
 //'use client'
-import React from 'react';
+import React from "react";
 import { useState } from "react";
-import styles from '../styles/header.module.css';
-import { MongoDBLogoMark } from '@leafygreen-ui/logo';
-import { H2, Body } from '@leafygreen-ui/typography';
+import styles from "../styles/header.module.css";
+import { MongoDBLogoMark } from "@leafygreen-ui/logo";
+import { H2, Body } from "@leafygreen-ui/typography";
 import InfoWizard from "./InfoWizard/InfoWizard";
 
 function Header() {
@@ -13,6 +13,7 @@ function Header() {
     <div className={styles["layout-header"]}>
       <div className={styles["logo-container"]}>
         <MongoDBLogoMark />
+        <div></div>
       </div>
       <div className={styles["title-container"]}>
         <H2>Business Loan Risk Assessor </H2>
@@ -81,9 +82,7 @@ function Header() {
         />
       </div>
     </div>
-
   );
 }
 
 export default Header;
-
