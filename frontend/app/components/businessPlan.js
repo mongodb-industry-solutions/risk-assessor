@@ -50,8 +50,10 @@ function BusinessPlan() {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${process.env.NEXT_PUBLIC_FIREWORKS_API_KEY}`
       },
+      // The model name is hardcoded here, but you can change it to a variable if needed
+      // https://fireworks.ai/models/fireworks/llama4-maverick-instruct-basic
       body: JSON.stringify({
-        model: "accounts/fireworks/models/llama-v3-70b-instruct",
+        model: "accounts/fireworks/models/llama4-maverick-instruct-basic",
         max_tokens: 3072,
         top_p: 1,
         top_k: 40,
