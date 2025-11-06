@@ -4,7 +4,7 @@ env:
   INTERNAL_API_URL: http://risk-assessor-web-app:80
   
 envSecrets:
-  NEXT_PUBLIC_FIREWORKS_API_KEY: risk-assessor-ui
+  FIREWORKS_API_KEY: risk-assessor-ui
   NEXT_PUBLIC_API_URL: risk-assessor-ui
   NODE_ENV: risk-assessor-ui
 
