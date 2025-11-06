@@ -68,3 +68,7 @@ This product is not a MongoDB official product. Use at your own risk!
 
 - Wei You Pan, Global Director, Financial Industry Solutions, MongoDB
 - Paul Claret, Senior Specialist for Financial Services, Industry Solutions, MongoDB
+
+## 📄 License
+
+See [LICENSE](LICENSE) file for details.

@@ -1,0 +1,15 @@
+env:
+  NODE_ENV: prod
+  
+envSecrets:
+  MONGODB_CONNECTION_STRING: risk-assessor
+  GOOGLE_API_KEY: risk-assessor
+  MONGODB_DB: risk-assessor
+  MONGODB_COL: risk-assessor
+  NODE_ENV: risk-assessor
+
+serviceAccount:
+  enabled: true
+  irsa:
+    accountId: "275662791714"
+    roleName: "kanopy-prod-cicd-irsa"

@@ -1,8 +1,23 @@
 FROM node:20.10.0
+
+# Accept build arguments
+ARG NEXT_PUBLIC_API_URL=http://localhost:8080
+ARG NODE_ENV=dev
+
+# Set environment variables for build process
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NODE_ENV=$NODE_ENV
+
 WORKDIR /app
 COPY frontend/package*.json ./
-RUN npm ci
+RUN npm install
 COPY frontend/ .
+
+# Set the port environment variable for Next.js
+ENV PORT=8080
+
+# Build Next.js app (NEXT_PUBLIC_* vars are embedded here)
 RUN npm run build
-EXPOSE 3000
-CMD ["npm", "start"]
+
+EXPOSE 8080
+CMD ["npm", "run", "start"]

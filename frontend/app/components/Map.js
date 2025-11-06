@@ -14,6 +14,7 @@ import styles from "../styles/map.module.css";
 import Pin from "@leafygreen-ui/icon/dist/Pin";
 import IconButton from "@leafygreen-ui/icon-button";
 import { useMarkers } from "../context/Markers";
+import GeocodingAPIClient from "@/clients/geocoding-api-client";
 
 const icons = {
   selected: L.icon({
@@ -66,11 +67,15 @@ const Map = ({ coordinates }) => {
   const handleMapClick = async (coords) => {
     setSelectedCoords(coords);
     setShowMarkers(false);
-    const newMarkers = await fetch(
-      `${process.env.NEXT_PUBLIC_API_ENDPOINT}/coordinates/?latitude=${coords.lat}&longitude=${coords.lng}`
-    );
-    const data = await newMarkers.json();
-    setMarkers(data);
+    try {
+      const data = await GeocodingAPIClient.getCoordinates({
+        latitude: coords.lat,
+        longitude: coords.lng,
+      });
+      setMarkers(data);
+    } catch (error) {
+      console.error("Error fetching coordinates:", error);
+    }
   };
 
   useEffect(() => {
@@ -88,17 +93,7 @@ const Map = ({ coordinates }) => {
 
   const fetchCoordinates = async (address) => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_ENDPOINT}/address/`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ address }),
-        }
-      );
-      const data = await response.json();
+      const data = await GeocodingAPIClient.geocodeAddress({ address });
       //console.log('fetchCoordinates:', data[0]);
       return { lat: data[0].latitude, lng: data[0].longitude };
     } catch (error) {
@@ -114,10 +109,10 @@ const Map = ({ coordinates }) => {
         setZoom(18);
 
         map.once("moveend", () => {
-          fetch(
-            `${process.env.NEXT_PUBLIC_API_ENDPOINT}/rev_geocode?latitude=${e.latlng.lat}&longitude=${e.latlng.lng}`
-          )
-            .then((response) => response.json())
+          GeocodingAPIClient.reverseGeocode({
+            latitude: e.latlng.lat,
+            longitude: e.latlng.lng,
+          })
             .then((data) => {
               setAddress(data.address);
             })
