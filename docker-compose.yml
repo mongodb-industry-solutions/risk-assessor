@@ -17,6 +17,6 @@ services:
       dockerfile: Dockerfile.backend
     image: loan-risk-assessor-back:latest
     ports:
-      - "8000:8000"
+      - "8080:8080"
     restart: always
     container_name: loan-risk-assessor-back

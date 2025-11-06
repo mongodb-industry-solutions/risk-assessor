@@ -3,7 +3,8 @@ import React, {useEffect,  useState, useRef } from 'react';
 import TextArea from '@leafygreen-ui/text-area';
 import Button from '@leafygreen-ui/button';
 import { useMarkers } from '../context/Markers';
-import SpeechToText from './SpeechToText'; 
+import SpeechToText from './SpeechToText';
+import FireworksAPIClient from '@/clients/fireworks-api-client'; 
 
 
 function BusinessPlan() {
@@ -43,32 +44,19 @@ function BusinessPlan() {
   };
 
   const sendPromptToFireworks = async (prompt) => {
-    const response = await fetch(`https://api.fireworks.ai/inference/v1/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.NEXT_PUBLIC_FIREWORKS_API_KEY}`
-      },
-      // The model name is hardcoded here, but you can change it to a variable if needed
-      // https://fireworks.ai/models/fireworks/llama4-maverick-instruct-basic
-      body: JSON.stringify({
-        model: "accounts/fireworks/models/llama4-maverick-instruct-basic",
-        max_tokens: 3072,
-        top_p: 1,
-        top_k: 40,
-        presence_penalty: 0,
-        frequency_penalty: 1,
-        temperature: 0.1,
-        messages:[{ content: prompt, role: "user"}]
-        }),
-    });
-  
-    const data = await response.json();
-    console.log('data:', data);
-    //setLlmResponse(data.choices[0].message.content);
-    setLoading(false);
-    return data.choices[0].message.content;
+    try {
+      // Use API client with proxy pattern (calls /api/fireworks)
+      const content = await FireworksAPIClient.sendPrompt({ 
+        prompt,
+        model: "accounts/fireworks/models/llama4-maverick-instruct-basic"
+      });
+      setLoading(false);
+      return content;
+    } catch (error) {
+      setLoading(false);
+      console.error('Error calling Fireworks AI:', error);
+      throw error; // Re-throw to let caller handle it
+    }
   };
 
   const handleSubmit = async () => {
@@ -150,14 +138,21 @@ Projected Annual Profit: $120,000
 
 Overall, Urban Cycle Fitness presents a moderate risk profile, with potential opportunities for growth in the Gilbert area. However, the business should consider investing in flood insurance to mitigate potential environmental risks.
     `
-    console.log('prompt:',prompt);
-    const response = await sendPromptToFireworks(prompt);
-    console.log('response:',response);
-    await setLlmResponse(response);
+    try {
+      console.log('prompt:',prompt);
+      const response = await sendPromptToFireworks(prompt);
+      console.log('response:',response);
+      await setLlmResponse(response);
+    } catch (error) {
+      console.error('Error submitting business plan:', error);
+      window.alert(`Error: ${error.message || 'Failed to get risk assessment. Please try again.'}`);
+      setLoading(false);
+    }
   };
 
   const handleGenerate = async () => {
-    await setValue("... loading example ...");
+    setLoading(true);
+    setValue("... loading example ...");
     const prompt = `
     Instructions:
     - You will be stepping in the shoes of a person with a business idea. Which you will pitch, however avoid using introductory phrases like "Here is a business idea:".
@@ -168,16 +163,23 @@ Overall, Urban Cycle Fitness presents a moderate risk profile, with potential op
     - Don't use more than 150 words.
 
     Useful example:
-    John’s Bakery is a new, upscale bakery focusing on providing organic, healthy and/or premium food products. Our product line fits nicely with health trends nationwide – while people still want pastries and baked goods, they want them to be as healthy as possible. 
-John’s Bakery is currently seeking $370,000 to launch. Specifically, these funds will be used as follows:
+    John's Bakery is a new, upscale bakery focusing on providing organic, healthy and/or premium food products. Our product line fits nicely with health trends nationwide – while people still want pastries and baked goods, they want them to be as healthy as possible. 
+John's Bakery is currently seeking $370,000 to launch. Specifically, these funds will be used as follows:
 • Store design/build: $250,000
-• Working capital: $120,000 to pay for Marketing, salaries, and lease costs until John’s Bakery reaches  
+• Working capital: $120,000 to pay for Marketing, salaries, and lease costs until John's Bakery reaches  
     `
-    console.log('prompt:',prompt);
-    const response = await sendPromptToFireworks(prompt);
-    console.log('response:',response);
-    await setValue(response);
-
+    try {
+      console.log('prompt:',prompt);
+      const response = await sendPromptToFireworks(prompt);
+      console.log('response:',response);
+      setValue(response);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error generating example:', error);
+      window.alert(`Error: ${error.message || 'Failed to generate example. Please check your API key configuration.'}`);
+      setValue('');
+      setLoading(false);
+    }
   };
 
   return (
