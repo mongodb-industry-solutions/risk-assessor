@@ -50,15 +50,15 @@ MONGODB_COL=Flood_geospatial
 
 1. To run the backend, execute the following command:
     ````bash
-    poetry run uvicorn main:app --host 0.0.0.0 --port 8000
+    poetry run uvicorn main:app --host 0.0.0.0 --port 8080
     ````
 
-> **_Note:_** Notice that the backend is running on port `8000`. You can change this port by modifying the `--port` flag.
+> **_Note:_** Notice that the backend is running on port `8080`. You can change this port by modifying the `--port` flag.
 
 Once this is running you should have 3 APIs that are running:
-- `http://localhost:8000/rev_geocode?latitude=${e.latlng.lat}&longitude=${e.latlng.lng}`
-- `http://localhost:8000/address/`
-- `http://localhost:8000/coordinates?latitude=${coords.lat}&longitude=${coords.lng}`
+- `http://localhost:8080/rev_geocode?latitude=${e.latlng.lat}&longitude=${e.latlng.lng}`
+- `http://localhost:8080/address/`
+- `http://localhost:8080/coordinates?latitude=${coords.lat}&longitude=${coords.lng}`
 
 Once you have done everything, we can move on to the next part:
 - [Installation of the frontend](../frontend/)

@@ -3,7 +3,7 @@
 Navigate to the `./frontend` folder and setup the `.env` file:
 
 ```
-NEXT_PUBLIC_API_ENDPOINT=http://localhost:8000
+NEXT_PUBLIC_API_URL=http://localhost:8080
 NEXT_PUBLIC_FIREWORKS_API_KEY=<Your_FIREWORKS_api_key>
 ```
 # Executing the Frontend without docker (optional)

@@ -1,0 +1,15 @@
+env:
+  NODE_ENV: prod
+  # Internal K8s service URL for backend communication (server-side only)
+  INTERNAL_API_URL: http://risk-assessor-web-app:80
+  
+envSecrets:
+  NEXT_PUBLIC_FIREWORKS_API_KEY: risk-assessor-ui
+  NEXT_PUBLIC_API_URL: risk-assessor-ui
+  NODE_ENV: risk-assessor-ui
+
+serviceAccount:
+  enabled: true
+  irsa:
+    accountId: "275662791714"
+    roleName: "kanopy-prod-cicd-irsa"

@@ -22,14 +22,21 @@ radius = 10  # 10 km
 class Address(BaseModel):
     address: str
 
-app = FastAPI()
+app = FastAPI(
+    title="Risk Assessor API",
+    description="Risk Assessor API for the Risk Assessor application",
+    version="0.0.1",
+    redirect_slashes=False
+)
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allow all HTTP methods (GET, POST, PUT, DELETE, OPTIONS, etc.)
+    allow_headers=["*"],  # Allow all headers
+    expose_headers=["*"],  # Expose all headers to the client
+    max_age=3600,  # Cache preflight requests for 1 hour
 )
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY")
