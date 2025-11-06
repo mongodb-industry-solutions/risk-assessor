@@ -14,9 +14,8 @@ export async function POST(request) {
     }
 
     // Get Fireworks API key from server-side environment (NOT exposed to browser)
-    // Use FIREWORKS_API_KEY (server-side only) or fallback to NEXT_PUBLIC_FIREWORKS_API_KEY
-    const apiKey = process.env.FIREWORKS_API_KEY || 
-                   process.env.NEXT_PUBLIC_FIREWORKS_API_KEY;
+    // Use FIREWORKS_API_KEY (server-side only)
+    const apiKey = process.env.FIREWORKS_API_KEY;
 
     if (!apiKey) {
       console.error('❌ Fireworks API key not configured');
