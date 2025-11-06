@@ -4,7 +4,7 @@
 ---
 kind: pipeline
 type: kubernetes
-name: staging
+name: backend-staging
 
 trigger:
   branch:
@@ -60,7 +60,7 @@ steps:
 ---
 kind: pipeline
 type: kubernetes
-name: prod
+name: backend-prod
 
 trigger:
   branch:
@@ -116,7 +116,7 @@ steps:
 ---
 kind: pipeline
 type: kubernetes
-name: staging
+name: frontend-staging
 
 trigger:
   branch:
@@ -176,7 +176,7 @@ steps:
 ---
 kind: pipeline
 type: kubernetes
-name: prod
+name: frontend-prod
 
 trigger:
   branch:
