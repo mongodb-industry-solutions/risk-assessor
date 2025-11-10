@@ -11,6 +11,7 @@ from geopy.distance import geodesic
 
 load_dotenv()
 
+# Environment variables
 MONGO_CONN = os.environ.get("MONGODB_CONNECTION_STRING")
 MONGODB_DB = os.environ.get("MONGODB_DB")
 MONGODB_COL = os.environ.get("MONGODB_COL")
