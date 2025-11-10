@@ -18,8 +18,8 @@ git clone git@github.com:mongodb-industry-solutions/Risk-assessor.git
 
 Navigate to the `/backend` folder and setup the `.env` file:
 ```
-MONGODB_CONNECTION_STRING=<Your_connection_string>
-GOOGLE_API_KEY=<Your_GoogleMaps_api_key>
+MONGODB_CONNECTION_STRING=
+GOOGLE_API_KEY=
 MONGODB_DB=ESG_demo
 MONGODB_COL=Flood_geospatial 
 ```
