@@ -48,7 +48,7 @@ function BusinessPlan() {
       // Use API client with proxy pattern (calls /api/fireworks)
       const content = await FireworksAPIClient.sendPrompt({ 
         prompt,
-        model: "accounts/fireworks/models/llama4-maverick-instruct-basic"
+        model: "accounts/fireworks/models/llama-v3p3-70b-instruct"
       });
       setLoading(false);
       return content;

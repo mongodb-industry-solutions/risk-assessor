@@ -4,7 +4,7 @@ export async function POST(request) {
   try {
     // Get request body (JSON)
     const body = await request.json();
-    const { prompt, model = "accounts/fireworks/models/llama4-maverick-instruct-basic" } = body;
+    const { prompt, model = "accounts/fireworks/models/llama-v3p3-70b-instruct" } = body;
 
     if (!prompt) {
       return Response.json(
