@@ -9,7 +9,7 @@ class FireworksAPIClient {
    * Send a prompt to Fireworks AI and get a response
    * @param {Object} params - Request parameters
    * @param {string} params.prompt - The prompt to send to Fireworks AI
-   * @param {string} [params.model] - Optional model name (defaults to llama4-maverick-instruct-basic)
+   * @param {string} [params.model] - Optional model name (defaults to llama-v3p3-70b-instruct)
    * @returns {Promise<string>} The AI-generated response content
    */
   static async sendPrompt({ prompt, model }) {
