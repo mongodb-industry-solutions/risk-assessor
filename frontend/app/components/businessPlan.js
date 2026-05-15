@@ -24,23 +24,15 @@ function BusinessPlan() {
     floods.forEach(flood => {
       if (!flood.year || !flood.distance) return;
       const year = flood.year;
-  
+
       if (flood.distance < 5000) {
         groupedFloods.lessThan5km[year] = (groupedFloods.lessThan5km[year] || 0) + 1;
       } else {
         groupedFloods.over5km[year] = (groupedFloods.over5km[year] || 0) + 1;
       }
     });
-  
-    let resultText = '';
-    for (const [year, count] of Object.entries(groupedFloods.lessThan5km)) {
-      resultText += `In ${year}, there were ${count} floods less than 5km away.\n`;
-    }
-    for (const [year, count] of Object.entries(groupedFloods.over5km)) {
-      resultText += `In ${year}, there were ${count} floods over 5km away.\n`;
-    }
-  
-    return resultText;
+
+    return groupedFloods;
   };
 
   const sendPromptToFireworks = async (prompt) => {
@@ -61,7 +53,7 @@ function BusinessPlan() {
 
   const handleSubmit = async () => {
     setLoading(true); 
-    const groupedFloods = groupFloodsByDistance(markers);
+    const groupedFloods = markers.length === 0 ? "NO_FLOOD_DATA_AVAILABLE" : groupFloodsByDistance(markers);
     if (value.length < 10) {
       window.alert('Please expand on your business idea!');
       return;
