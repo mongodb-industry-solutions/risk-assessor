@@ -5,7 +5,7 @@ export async function POST(request) {
     // Get request body (JSON)
     const body = await request.json();
     const { prompt } = body;
-    const model = process.env.FIREWORKS_MODEL || "accounts/fireworks/models/llama-v3p3-70b-instruct";
+    const model = process.env.FIREWORKS_MODEL || "accounts/fireworks/models/gpt-oss-120b";
 
     if (!prompt) {
       return Response.json(
