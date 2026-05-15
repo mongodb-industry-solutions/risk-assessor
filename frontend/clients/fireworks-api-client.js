@@ -6,13 +6,13 @@ const API_BASE_URL = '/api';
 
 class FireworksAPIClient {
   /**
-   * Send a prompt to Fireworks AI and get a response
+   * Send a prompt to Fireworks AI and get a response.
+   * Model is selected server-side via the FIREWORKS_MODEL env var.
    * @param {Object} params - Request parameters
    * @param {string} params.prompt - The prompt to send to Fireworks AI
-   * @param {string} [params.model] - Optional model name (defaults to llama-v3p3-70b-instruct)
    * @returns {Promise<string>} The AI-generated response content
    */
-  static async sendPrompt({ prompt, model }) {
+  static async sendPrompt({ prompt }) {
     try {
       // Call Next.js proxy route
       // Browser calls: /api/fireworks
@@ -22,7 +22,7 @@ class FireworksAPIClient {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ prompt, model }),
+        body: JSON.stringify({ prompt }),
       });
 
       if (!response.ok) {

@@ -36,32 +36,21 @@ function BusinessPlan() {
   };
 
   const sendPromptToFireworks = async (prompt) => {
-    try {
-      // Use API client with proxy pattern (calls /api/fireworks)
-      const content = await FireworksAPIClient.sendPrompt({ 
-        prompt,
-        model: "accounts/fireworks/models/llama-v3p3-70b-instruct"
-      });
-      setLoading(false);
-      return content;
-    } catch (error) {
-      setLoading(false);
-      console.error('Error calling Fireworks AI:', error);
-      throw error; // Re-throw to let caller handle it
-    }
+    // Model is selected server-side via FIREWORKS_MODEL env var
+    return FireworksAPIClient.sendPrompt({ prompt });
   };
 
   const handleSubmit = async () => {
-    setLoading(true); 
     const groupedFloods = markers.length === 0 ? "NO_FLOOD_DATA_AVAILABLE" : groupFloodsByDistance(markers);
     if (value.length < 10) {
       window.alert('Please expand on your business idea!');
       return;
     }
     if (address == undefined || address == '') {
-      window.alert('Please imput an adress on the map');
+      window.alert('Please input an address on the map');
       return;
     }
+    setLoading(true);
     //console.log('groupedFloods:', groupedFloods);
     //console.log('Address:',address);
     const prompt = `
@@ -138,6 +127,7 @@ Overall, Urban Cycle Fitness presents a moderate risk profile, with potential op
     } catch (error) {
       console.error('Error submitting business plan:', error);
       window.alert(`Error: ${error.message || 'Failed to get risk assessment. Please try again.'}`);
+    } finally {
       setLoading(false);
     }
   };

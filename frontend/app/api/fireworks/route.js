@@ -4,7 +4,8 @@ export async function POST(request) {
   try {
     // Get request body (JSON)
     const body = await request.json();
-    const { prompt, model = "accounts/fireworks/models/llama-v3p3-70b-instruct" } = body;
+    const { prompt } = body;
+    const model = process.env.FIREWORKS_MODEL || "accounts/fireworks/models/llama-v3p1-70b-instruct";
 
     if (!prompt) {
       return Response.json(
@@ -50,10 +51,14 @@ export async function POST(request) {
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ error: 'Request failed' }));
+      const errorData = await response.json().catch(() => ({}));
       console.error('❌ Fireworks AI error:', errorData);
+      const message =
+        (typeof errorData.error === 'string' && errorData.error) ||
+        errorData.error?.message ||
+        'Fireworks AI request failed';
       return Response.json(
-        { error: errorData.error || 'Fireworks AI request failed', details: errorData },
+        { error: message, details: errorData },
         { status: response.status }
       );
     }
