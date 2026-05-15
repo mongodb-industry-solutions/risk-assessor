@@ -40,11 +40,11 @@ export async function POST(request) {
       body: JSON.stringify({
         model: model,
         max_tokens: 3072,
-        top_p: 1,
+        top_p: 0.9,
         top_k: 40,
-        presence_penalty: 0,
-        frequency_penalty: 1,
-        temperature: 0.1,
+        presence_penalty: 0.3,
+        frequency_penalty: 0.4,
+        temperature: 0.3,
         messages: [{ content: prompt, role: "user" }],
       }),
     });
