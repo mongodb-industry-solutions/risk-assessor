@@ -4,7 +4,8 @@ export async function POST(request) {
   try {
     // Get request body (JSON)
     const body = await request.json();
-    const { prompt, model = "accounts/fireworks/models/llama-v3p3-70b-instruct" } = body;
+    const { prompt } = body;
+    const model = process.env.FIREWORKS_MODEL || "accounts/fireworks/models/gpt-oss-120b";
 
     if (!prompt) {
       return Response.json(
@@ -40,20 +41,24 @@ export async function POST(request) {
       body: JSON.stringify({
         model: model,
         max_tokens: 3072,
-        top_p: 1,
+        top_p: 0.9,
         top_k: 40,
-        presence_penalty: 0,
-        frequency_penalty: 1,
-        temperature: 0.1,
+        presence_penalty: 0.3,
+        frequency_penalty: 0.4,
+        temperature: 0.3,
         messages: [{ content: prompt, role: "user" }],
       }),
     });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ error: 'Request failed' }));
+      const errorData = await response.json().catch(() => ({}));
       console.error('❌ Fireworks AI error:', errorData);
+      const message =
+        (typeof errorData.error === 'string' && errorData.error) ||
+        errorData.error?.message ||
+        'Fireworks AI request failed';
       return Response.json(
-        { error: errorData.error || 'Fireworks AI request failed', details: errorData },
+        { error: message, details: errorData },
         { status: response.status }
       );
     }
