@@ -11,6 +11,7 @@ import { H2, Subtitle, Body } from "@leafygreen-ui/typography";
 import { ParagraphSkeleton } from "@leafygreen-ui/skeleton-loader";
 import LeafyGreenProvider from "@leafygreen-ui/leafygreen-provider";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const Map = dynamic(() => import("./components/Map"), { ssr: false });
 
@@ -115,7 +116,7 @@ function LoadingContainer() {
         <div className={styles.loadingMain}>
           <div className={styles.loadingContainer} style={{ height: "100%" }}>
             <H2>Assessor's response</H2>
-            <ReactMarkdown>{llmResponse}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>{llmResponse}</ReactMarkdown>
           </div>
         </div>
       )}
